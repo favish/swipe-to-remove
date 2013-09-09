@@ -1,6 +1,12 @@
 angularApApp
 ============
 
+very beta, more of a proof of concept atm
+uses ngTouch's swipe method,
+needs a css class defined called moving to handle snap in place animation,
+example uses ngAnimate to animate removal of items.
+
+
 to run demo install dependencies
 ```
 cd demo
