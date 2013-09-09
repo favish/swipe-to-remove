@@ -5,10 +5,9 @@ angular.module('itemSwipe', ['ngTouch'])
   .directive('itemSwipe', ['$swipe', '$document', '$window', '$timeout',
     function($swipe, $document, $window, $timeout) {
 
-
     return function(scope, element, attr) {
 
-      var startCoords, valid, pos, startIndex, $undoDiv, $wrapper, threeD;
+      var startCoords, pos, startIndex, $undoDiv, threeD;
       threeD = false;
 
       element.css({position : 'relative'});
