@@ -5,38 +5,20 @@ angular.module('itemSwipe', ['ngTouch'])
   .directive('itemSwipe', ['$swipe', '$document', '$window', '$timeout',
     function($swipe, $document, $window, $timeout) {
 
-    // The maximum vertical delta for a swipe should be less than 75px.
-    var MAX_VERTICAL_DISTANCE = 75;
-    // Vertical distance should not be more than a fraction of the horizontal distance.
-    var MAX_VERTICAL_RATIO = 0.3;
-    // At least a 30px lateral motion is necessary for a swipe.
-    var MIN_HORIZONTAL_DISTANCE = 30;
 
     return function(scope, element, attr) {
 
-      var startCoords, valid, pos, startIndex, $button, threeD;
+      var startCoords, valid, pos, startIndex, $undoDiv, $wrapper, threeD;
       threeD = false;
 
       element.css({position : 'relative'});
+      element.wrap('<div class="item-swipe-wrapper"></div>');
 
-      function validSwipe(coords) {
-        // Check that it's within the coordinates.
-        // Absolute vertical distance must be within tolerances.
-        // Absolute horizontal distance must be within tolerances.
-        if (!startCoords) return false;
-        var deltaY = Math.abs(coords.y - startCoords.y);
-        var deltaX = Math.abs(coords.x - startCoords.x);
-        return valid && // Short circuit for already-invalidated swipes.
-            deltaY < MAX_VERTICAL_DISTANCE &&
-            deltaX > 0 &&
-            deltaX > MIN_HORIZONTAL_DISTANCE &&
-            deltaY / deltaX < MAX_VERTICAL_RATIO;
-      }
       function validMove(coords, element){
         return element.index() === startIndex ? true : false;
       }
       function fullSwipe(coords){
-        return coords.x > element.parent().width()*(4/5) ? true : false;
+        return coords.x > element.parent().width()*(1/3) ? true : false;
       }
       function updateElementPosition(pos){
         if(threeD){
@@ -51,23 +33,26 @@ angular.module('itemSwipe', ['ngTouch'])
           element.css('left', pos);
         }
       }
+
       scope.proceed = false;
       scope.$watch('proceed', function(val){
         if(val){
-          $button.show();
+          $undoDiv.show();
           scope.eliminateItem = $timeout(function() {
-            $button.unbind('click');
+            $undoDiv.unbind('click');
             scope.proceed = false;
             return scope.$eval(attr.onRemove);
           }, 2200);
         }else{
-          $button.hide();
+          $undoDiv.hide();
           $timeout.cancel(scope.eliminateItem);
           updateElementPosition(0);
+          element.css('opacity', 1);
         }
       });
 
-      $button = angular.element('<button></button')
+      $undoDiv = angular.element('<div></div>')
+        .addClass('undo-div')
         .hide()
         .text('undo')
         .bind('click', function(){
@@ -87,24 +72,23 @@ angular.module('itemSwipe', ['ngTouch'])
           element.addClass('moving');
         },
         'move': function(coords) {
+          element.css('opacity', 0.5);
           if(validMove(coords, element)){
             pos = coords.x - element.width()/2;
             updateElementPosition(pos);
             if(coords.x > $document.width()*2/3){
+
             }else{
               scope.proceed = false;
               scope.$apply();
             }
           }
-
         },
         'end': function(endCoords) {
           element.addClass('moving');
           if (fullSwipe(endCoords)) {
-          // if (validSwipe(endCoords) && fullSwipe(endCoords)) {
-            // execute user defined callback
             scope.proceed = true;
-            updateElementPosition($document.width() - element.width());
+            updateElementPosition($document.width());
           }else {
             scope.proceed = false;
             updateElementPosition(0);
@@ -112,7 +96,5 @@ angular.module('itemSwipe', ['ngTouch'])
           scope.$apply();
         }
       });
-
     };
-
   }]);

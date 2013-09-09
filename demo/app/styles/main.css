@@ -41,16 +41,24 @@ body {
 .animate-repeat.ng-move.ng-move-active { }
 
 .test{
-  width: 30%;
-  height:100px;
+  width: 100%;
+  height: 70px;
   background: whitesmoke;
   margin: 4px 12px;
+  zoom: 1;
 }
 .container{
+  zoom: 1;
   width: 100%;
   max-width: 100%;
+  overflow: hidden;
 }
 .moving {
   transition : all 0.2s ease-in-out
+}
+.undo-div{
+  width: 100%;
+  position: absolute;
+  left: -100%;
 }
 
