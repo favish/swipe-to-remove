@@ -30,3 +30,12 @@ $scope.removeThing = function(thing){
   $scope.things.splice($scope.things.indexOf(thing), 1);
 };
 ```
+
+in css
+
+```
+.moving {
+  transition : all 0.2s ease-in-out
+}
+```
+
