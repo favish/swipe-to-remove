@@ -43,5 +43,10 @@ in css
 .moving {
   transition : all 0.2s ease-in-out
 }
+.undo-div{
+  width: 100%;
+  position: absolute;
+  left: -100%;
+}
 ```
 
