@@ -23,7 +23,11 @@ grunt server
 Usage
 in HTML
 ```
-<div item-swipe on-remove="removeThing(thing)" ng-repeat="thing in things">{{thing.name}}</div>
+<div class="animate-repeat" ng-repeat="thing in things">
+  <div class="test" item-swipe on-remove="removeThing(thing)">
+    {{thing.name}}
+  </div>
+</div>
 ```
 
 in controller
