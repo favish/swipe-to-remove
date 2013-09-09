@@ -15,7 +15,7 @@ angular.module('itemSwipe', ['ngTouch'])
     return function(scope, element, attr) {
 
       var startCoords, valid, pos, startIndex, $button, threeD;
-      var threeD = false;
+      threeD = false;
 
       element.css({position : 'relative'});
 
