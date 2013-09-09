@@ -10,12 +10,13 @@ bower install
 run the server
 ```
 grunt server
-
+```
 
 Usage
 in HTML
 ```
 <div item-swipe on-remove="removeThing(thing)" ng-repeat="thing in things">{{thing.name}}</div>
+```
 
 in controller
 ```
