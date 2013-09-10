@@ -36,55 +36,51 @@ angular.module('itemSwipe', ['ngTouch'])
       scope.proceed = false;
       scope.$watch('proceed', function(val){
         if(val){
-          $undoDiv.show();
+          $undoDiv.css('opacity', 1);
           scope.eliminateItem = $timeout(function() {
             $undoDiv.unbind('click');
             scope.proceed = false;
             return scope.$eval(attr.onRemove);
-          }, 2200);
+          }, 1220);
         }else{
-          $undoDiv.hide();
+          $undoDiv.css('opacity', 0);
           $timeout.cancel(scope.eliminateItem);
           updateElementPosition(0);
-          element.css('opacity', 1);
         }
       });
 
       $undoDiv = angular.element('<div></div>')
         .addClass('undo-div')
-        .hide()
+        .css('opacity', 0)
         .text('undo')
         .bind('click', function(){
           scope.proceed = false;
           scope.$apply();
         })
-        .appendTo(element);
+        .appendTo(element.parent());
 
       $swipe.bind(element, {
         'start': function(coords) {
           startCoords = coords;
           startIndex = element.index();
           element.removeClass('moving');
+          element.css('opacity', 0.5);
         },
         'cancel': function() {
-          valid = false;
           element.addClass('moving');
         },
         'move': function(coords) {
-          element.css('opacity', 0.5);
           if(validMove(coords, element)){
             pos = coords.x - element.width()/2;
             updateElementPosition(pos);
-            if(coords.x > $document.width()*2/3){
-
-            }else{
+            if(coords.x < $document.width()*2/3){
+              // cancel if they've swiped back to the left
               scope.proceed = false;
               scope.$apply();
             }
           }
         },
         'end': function(endCoords) {
-          element.addClass('moving');
           if (fullSwipe(endCoords)) {
             scope.proceed = true;
             updateElementPosition($document.width());
@@ -92,6 +88,8 @@ angular.module('itemSwipe', ['ngTouch'])
             scope.proceed = false;
             updateElementPosition(0);
           }
+          element.addClass('moving');
+          element.css('opacity', 1 );
           scope.$apply();
         }
       });
