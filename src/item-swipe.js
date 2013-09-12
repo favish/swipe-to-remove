@@ -65,7 +65,6 @@ angular.module('itemSwipe', ['ngTouch'])
                 scope.$apply();
               },
               'cancel': function() {
-                scope.moving = 'moving';
                 scope.swiperStyle = cssPrefix('transition', 'all 0.2s ease-in-out');
                 scope.swiperStyle.opacity = 1;
                 scope.$apply();
