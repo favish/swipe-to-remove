@@ -1,6 +1,7 @@
 <button ng-click="resetThings()">Reset things</button>
 <div class="animate-repeat" ng-repeat="thing in things">
-  <div class="test" item-swipe on-remove="removeThing(thing)">
+  <div class="test" item-swipe on-remove="removeThing(thing)" three-d>
+    my element
     {{thing.name}}
   </div>
 </div>

@@ -33,7 +33,7 @@ body {
 .animate-repeat.ng-move { }
 .animate-repeat.ng-move.ng-move-active { }
 
-.test{
+.swiper{
   width: 100%;
   height: 70px;
   background: whitesmoke;
