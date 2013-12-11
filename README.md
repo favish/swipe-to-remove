@@ -5,8 +5,9 @@ it works, a lot of code borrowed from ngSwipe
 uses ngTouch's swipe method,
 needs a css class defined called moving to handle snap in place animation,
 example uses ngAnimate to animate removal of items.
+oh and it requires jquery.
 
-working plunkr demo
+working plunkr demo, uses a slightly older version but you get the idea.
 http://plnkr.co/edit/f8LgOJm3UanOdd559LM8?p=preview
 
 to run demo install dependencies
