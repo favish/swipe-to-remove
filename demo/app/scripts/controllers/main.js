@@ -1,13 +1,17 @@
 'use strict';
 
 angular.module('demoApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, Things) {
     $scope.removeThing = function(thing){
       $scope.things.splice($scope.things.indexOf(thing), 1);
     };
     $scope.resetThings = function(){
-      $scope.things = [{name: 1},{name: 2},{name: 3},{name: 4},{name: 5}];
-      $scope.$apply();
+      $scope.things = Things();
     };
-    $scope.things = [{name: 1},{name: 2},{name: 3},{name: 4},{name: 5}];
+    $scope.resetThings();
+  });
+
+angular.module('demoApp')
+  .value('Things', function () {
+    return [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}];
   });
