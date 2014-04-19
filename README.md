@@ -43,8 +43,8 @@ $scope.removeThing = function(thing){
 ```
 
 ### Styling
-".swiper" is provided on the element to be swiped
-".undo-div" is provided on the element that temporarily replaces the swiper element
+*   ".swiper" is provided on the element to be swiped
+*   ".undo-div" is provided on the element that temporarily replaces the swiper element
 
 The ng-repeat should be wrapped in a container to prevent the animation from extending the page width:
 ```
