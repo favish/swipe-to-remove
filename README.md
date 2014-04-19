@@ -1,7 +1,7 @@
 Swipe to Remove
 ============
 
-An angular directive to swipe elements away in order to remove them from a list. Built upon ngTouch's <a href="https://docs.angularjs.org/api/ngTouch/service/$swipe">$swipe()</a> service.
+An angular directive to swipe elements away in order to remove them from a list. Built upon ngTouch's <a href="https://docs.angularjs.org/api/ngTouch/service/$swipe">$swipe</a> service.
 
 ## Dependencies
 *   jQuery
