@@ -7,7 +7,7 @@ jQuery requirement for css manipulation
 
 Working plunkr demo <a href="http://plnkr.co/edit/5ezZJ3yFFWVQWypAgC4h?p=preview">here<a/>
 
-To run the demo first install node and bower dependencies
+Includes a yeoman generated demo for local testing
 ```
 cd demo
 npm install
@@ -19,10 +19,10 @@ grunt server
 ```
 
 Usage
-in HTML
+in HTML, use the item-swipe attribute in your ng-repeat and set the on-remove attribute to the appropriate method
 ```
 <div class="animate-repeat" ng-repeat="thing in things">
-  <div class="test" item-swipe on-remove="removeThing(thing)">
+  <div item-swipe on-remove="removeThing(thing)">
     {{thing.name}}
   </div>
 </div>
@@ -35,16 +35,17 @@ $scope.removeThing = function(thing){
 };
 ```
 
-in css
+Styling
+".swiper" is provided on the element to be swiped
+".undo-div" is provided on the element that temporarily replaces the swiper element
 
+The ng-repeat should be wrapped in a container to prevent the animation from extending the page width:
 ```
-.moving {
-  transition : all 0.2s ease-in-out
-}
-.undo-div{
+.container {
+  zoom: 1;
   width: 100%;
-  position: absolute;
-  left: -100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 ```
 

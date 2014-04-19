@@ -11,10 +11,6 @@ body {
   overflow: hidden;
 }
 
-.item-swipe-wrapper {
-  position: relative;
-}
-
 .swiper {
   width: 100%;
   height: 70px;
