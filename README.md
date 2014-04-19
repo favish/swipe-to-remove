@@ -1,16 +1,13 @@
-angularApApp
+Swipe to Remove
 ============
 
-it works, a lot of code borrowed from ngSwipe
-uses ngTouch's swipe method,
-needs a css class defined called moving to handle snap in place animation,
-example uses ngAnimate to animate removal of items.
-oh and it requires jquery.
+Built upon ngTouch's <a href="https://docs.angularjs.org/api/ngTouch/service/$swipe">$swipe()</a> service.
+Leverages ngAnimate for animating addition and deletion of items.
+jQuery requirement for css manipulation
 
-working plunkr demo, uses a slightly older version but you get the idea.
-http://plnkr.co/edit/f8LgOJm3UanOdd559LM8?p=preview
+Working plunkr demo <a href="http://plnkr.co/edit/5ezZJ3yFFWVQWypAgC4h?p=preview">here<a/>
 
-to run demo install dependencies
+To run the demo first install node and bower dependencies
 ```
 cd demo
 npm install
@@ -31,7 +28,7 @@ in HTML
 </div>
 ```
 
-in controller
+Handle remove event in the controller however you like
 ```
 $scope.removeThing = function(thing){
   $scope.things.splice($scope.things.indexOf(thing), 1);
